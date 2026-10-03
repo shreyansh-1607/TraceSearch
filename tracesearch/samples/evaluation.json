@@ -1,0 +1,182 @@
+[
+  {
+    "id": "os-deadlock",
+    "query": "How can acquiring resources in the same order avoid processes waiting on one another?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "fixed global order prevents circular wait"
+      }
+    ]
+  },
+  {
+    "id": "os-aging",
+    "query": "How can a scheduler keep a low-priority job from waiting forever?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "Aging gradually increases the priority"
+      }
+    ]
+  },
+  {
+    "id": "os-quantum",
+    "query": "What is the downside of a very short round-robin time slice?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "context-switch overhead"
+      }
+    ]
+  },
+  {
+    "id": "os-page",
+    "query": "What happens when a requested virtual memory page is absent from RAM?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "page fault"
+      }
+    ]
+  },
+  {
+    "id": "net-framing",
+    "query": "How do I separate messages received over a TCP connection?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "length-prefix framing"
+      }
+    ]
+  },
+  {
+    "id": "net-loopback",
+    "query": "Why can't another laptop connect to a service bound to 127.0.0.1?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "listening only on loopback"
+      }
+    ]
+  },
+  {
+    "id": "net-resume",
+    "query": "Why are checkpoints needed if TCP already retransmits lost data?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "acknowledged byte offset"
+      }
+    ]
+  },
+  {
+    "id": "net-hash",
+    "query": "Does a SHA-256 digest authenticate the person who sent a file?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "hashing alone does not establish"
+      }
+    ]
+  },
+  {
+    "id": "db-atomic",
+    "query": "Which transaction property prevents a partially committed operation?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "Atomicity means"
+      }
+    ]
+  },
+  {
+    "id": "db-seat",
+    "query": "How can a database stop two customers booking the same seat?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "unique constraint"
+      }
+    ]
+  },
+  {
+    "id": "db-index",
+    "query": "Why might adding an index fail to improve a SQL query?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "not automatically faster"
+      }
+    ]
+  },
+  {
+    "id": "db-retry",
+    "query": "How do I stop an order retry from deducting inventory again?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "unique request identifier"
+      }
+    ]
+  },
+  {
+    "id": "search-confidence",
+    "query": "Is vector similarity a probability that my question is answered?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "not calibrated probabilities"
+      }
+    ]
+  },
+  {
+    "id": "search-update",
+    "query": "How does incremental indexing avoid embedding the same documents again?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "unchanged files reuse existing embeddings"
+      }
+    ]
+  },
+  {
+    "id": "search-source",
+    "query": "How are retrieved vectors connected to page references?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "metadata database maps"
+      }
+    ]
+  },
+  {
+    "id": "search-crash",
+    "query": "How can an index update fail without breaking existing searches?",
+    "evidence": [
+      {
+        "document": "notes.md",
+        "contains": "previous generation remains usable"
+      }
+    ]
+  },
+  {
+    "id": "negative-weather",
+    "query": "What will tomorrow's temperature be in Mumbai?",
+    "evidence": []
+  },
+  {
+    "id": "negative-person",
+    "query": "What is the personal phone number of my course instructor?",
+    "evidence": []
+  },
+  {
+    "id": "negative-food",
+    "query": "How much flour is needed for a chocolate cake?",
+    "evidence": []
+  },
+  {
+    "id": "negative-policy",
+    "query": "What is my institute's official minimum attendance percentage?",
+    "evidence": []
+  }
+]

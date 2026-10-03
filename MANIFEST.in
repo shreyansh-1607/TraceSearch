@@ -1,0 +1,8 @@
+include README.md LICENSE .env.example .gitignore
+recursive-include tracesearch *.py
+recursive-include tests *.py
+recursive-include samples *.md *.pdf *.json
+recursive-include .github *.yml
+global-exclude *.pyc
+prune .pytest_cache
+prune .tracesearch

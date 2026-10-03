@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tracesearch"
+version = "1.0.0"
+description = "Incremental local document search with FAISS, MySQL, and versioned index publication"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = [
+  "numpy>=1.26,<3",
+  "faiss-cpu>=1.8,<2",
+  "mysql-connector-python>=9,<10",
+  "pypdf>=5,<7",
+  "sentence-transformers>=5,<6",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "build>=1,<2"]
+
+[project.scripts]
+tracesearch = "tracesearch.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["tracesearch*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: requires a disposable MySQL database", "model: downloads/runs the real embedding model"]

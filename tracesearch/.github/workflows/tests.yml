@@ -1,0 +1,63 @@
+name: TraceSearch tests
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  unit:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.11', '3.12']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - run: python -m pip install -e ".[dev]"
+      - run: python -m pytest -q -m "not integration"
+      - run: python -m tracesearch --help
+      - run: python -m build --wheel
+  mysql-model:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ci-disposable-password
+          MYSQL_DATABASE: tracesearch_test
+          MYSQL_USER: tracesearch_test_user
+          MYSQL_PASSWORD: ci-app-password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=12
+    env:
+      TRACE_DB_HOST: 127.0.0.1
+      TRACE_DB_PORT: '3306'
+      TRACE_DB_USER: tracesearch_test_user
+      TRACE_DB_PASSWORD: ci-app-password
+      TRACE_DB_NAME: tracesearch_test
+      TRACE_RUN_INTEGRATION: '1'
+      TRACE_RUN_MODEL: '1'
+      HF_HUB_DISABLE_PROGRESS_BARS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -e ".[dev]"
+      - run: python -m pytest -q --junitxml=test-results.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mysql-model-test-results
+          path: test-results.xml
